@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Listagem de Lancamentos</title>
+</h:head>
+
+<h:body>
+	<p:messages id="details" showDetail="true" closable="true">
+		<p:autoUpdate />
+	</p:messages>
+		<h:form>
+		<p:panel header="Lancamento">
+	<p:commandLink value="Resumo" action="#{lancamentoBean.resumo()}"/>
+    <p:dataTable value="#{lancamentoBean.lista}" var="l">
+    	<p:column headerText="Id"><p:outputLabel value="#{l.id}"/></p:column>
+    	<p:column headerText="Descricao"><p:outputLabel value="#{l.descricao}"/></p:column>
+    	<p:column headerText="Custo"><p:outputLabel value="#{l.valor}"/></p:column>
+    	<p:column headerText="Tipo"><p:outputLabel value="#{l.tipo}"/></p:column>
+    	<p:column headerText="Data"><p:outputLabel value="#{l.data}"/></p:column>
+		<p:column headerText="Detalhar"><p:commandLink value="Detalhes" action="#{lancamentoBean.showDetails(l)}" /></p:column>
+        <p:column headerText="Apagar"><p:commandLink value="Excluir" action="#{lancamentoBean.deletar(l)}"/></p:column>
+    </p:dataTable>
+
+    <h:link outcome="index.xhtml" value="Voltar ao Cadastro"/>
+    		</p:panel>
+	</h:form>
+</h:body>
+</html>
